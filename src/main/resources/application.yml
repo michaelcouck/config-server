@@ -1,5 +1,11 @@
 server:
   port: 8282
+  ssl:
+    enabled: true
+    keyStoreType: JKS
+    key-alias: selfsigned
+    key-store: /etc/ssl/certs/belgiantrain.jks
+    key-store-password: password
 
 spring:
   cloud:
@@ -11,4 +17,4 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8283/eureka}
+      defaultZone: ${EUREKA_URI:https://azure-dev-belgianrail.be:8446/eureka}
