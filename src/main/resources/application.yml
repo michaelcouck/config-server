@@ -13,6 +13,14 @@ spring:
   profiles:
     active: default
   cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/michaelcouck/config
+          repos:
+            gateway-server:
+              pattern: gateway-server
+              uri: https://github.com/michaelcouck/gateway-server
     gateway:
       discovery:
         locator:
@@ -25,14 +33,3 @@ eureka:
     registerWithEureka: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8446/eureka}
-
-spring:
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/michaelcouck/config
-          repos:
-            gateway-server:
-              pattern: gateway-server
-              uri: https://github.com/michaelcouck/gateway-server
