@@ -1,7 +1,0 @@
-database:
-  url: bla
-  username: bla
-  password: bla
-
-amq:
-  event-topic: state.machine.topic

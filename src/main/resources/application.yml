@@ -1,20 +1,38 @@
 server:
-  port: 8282
+  port: 8450
   ssl:
     enabled: false
     keyStoreType: JKS
-    key-alias: selfsigned
+    key-alias: localhost
     key-store: /etc/ssl/certs/belgiantrain.jks
     key-store-password: password
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: default
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+eureka:
+  client:
+    fetchRegistry: false
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8446/eureka}
 
 spring:
   cloud:
     config:
       server:
         git:
-          uri: file:./config
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8446/eureka}
+          uri: https://github.com/michaelcouck/config
+          repos:
+            gateway-server:
+              pattern: gateway-server
+              uri: https://github.com/michaelcouck/gateway-server
